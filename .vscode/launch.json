@@ -15,6 +15,31 @@
     ],
     "configurations": [
         {
+            "name": "PowerShell: Module Interactive Session",
+            "type": "PowerShell",
+            "request": "launch",
+            "script": "Enter command to import your binary module, for example: \"Import-Module -Force /path/to/module.psd1|dll\""
+        },
+        {
+            "name": "Launch Chrome",
+            "request": "launch",
+            "type": "chrome",
+            "url": "http://localhost:8080",
+            "webRoot": "${workspaceFolder}"
+        },
+        {
+            "name": ".NET Core Attach",
+            "type": "coreclr",
+            "request": "attach"
+        },command
+        return=$?
+        if [ $return -eq 137 ]; then
+            exit 0
+        else # @chepner's very good suggestion
+            exit $return 
+        fi
+
+        {
             "name": "Back End",
             "type": "coreclr",
             "request": "launch",
